@@ -1,7 +1,5 @@
 <?php
 session_start();
-require 'processAccountCreation.php';
-require 'processLogin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
