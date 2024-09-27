@@ -1,5 +1,7 @@
 <?php
 session_start();
+require 'processAccountCreation.php';
+require 'processLogin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +10,7 @@ session_start();
 </head>
 <body>
 <h1>Existing User</h1>
-<form name="LogIn" action="processLogin.php" method="get" autocomplete="off">
+<form name="LogIn" action="processLogin.php" method="post" autocomplete="off">
     <p>
         <label for="user">Username:</label>
         <input type="text" name="user" id="user" /> <!--creates a simple form with entry and a submit-->
@@ -20,7 +22,7 @@ session_start();
     </p>
 </form>
 <h1>New User</h1>
-<form name="createUser" action="processAccountCreation.php" method="get" autocomplete="off">
+<form name="createUser" action="processAccountCreation.php" method="post" autocomplete="off">
     <p>
         <label for="user">Username:</label>
         <input type="text" name="user" id="user" /> <!--creates a simple form with entry and a submit-->
