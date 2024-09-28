@@ -2,6 +2,7 @@
 if(session_id() == '' || !isset($_SESSION)) {
     session_start();
     $_SESSION['token'] = bin2hex(random_bytes(32));
+    echo "createdSession";
 }
 ?>
 <!DOCTYPE html>
