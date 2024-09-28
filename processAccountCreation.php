@@ -1,5 +1,4 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +7,9 @@ session_start();
 </head>
 <body>
 <?php
+if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){
+    header("Location: login.php");
+}
 $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
 
 if ($mysqli->connect_errno) {
@@ -32,6 +34,9 @@ if($cnt == 0){
     // Username available
     //create a new user with a userName userNameAttempt, password PasswordAttempt (hashed) and no bio
     $_SESSION['username'] = $userNameAttempt;
+    $stmt = $mysqli->prepare("INSERT INTO Users (userName, password) VALUES (?, ?)");
+    $stmt->bind_param('ss', $userNameAttempt, $passwordAttempt);
+    $stmt->execute();
     header('Location: home.php');
     // Redirect to your target page
 }

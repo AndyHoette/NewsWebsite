@@ -1,5 +1,7 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
-session_start();
+if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){
+    header("Location: login.php");
+}
 $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
 
 if ($mysqli->connect_errno) {
@@ -31,7 +33,7 @@ $stmt->fetch();
 if($cnt == 1 && password_verify($passwordAttempt, $pwd_hash)){
     // Login succeeded!
     $_SESSION['username'] = $userNameAttempt;
-    header('Location: home.php');
+    header('Location: storypage.php');
     // Redirect to your target page
 }
 session_destroy();
