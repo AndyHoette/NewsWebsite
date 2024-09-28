@@ -9,9 +9,9 @@
 <?php
 
 if(!(isset($_POST['token'])&&$_POST['token']==$_SESSION['token'])){
-    echo "post token";
+    echo "post token\n";
     echo $_POST['token'];
-    echo "session token";
+    echo "session token\n";
     echo $_SESSION['token'];
     exit;
     //header("Location: unauthorized.php");
