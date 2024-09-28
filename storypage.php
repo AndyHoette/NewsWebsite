@@ -1,3 +1,17 @@
+<?php
+require "database.php";
+
+$story_id = $_GET['id'];
+
+$sql_Story = "SELECT title, body, link FROM Stories WHERE id=$story_id";
+$story_result = $conn->query($sql_Story);
+$story = $result_story->fetch_assoc();
+
+
+$sql_comment = "SELECT body FROM Comments WHERE storyCommentIsOn=$story_id";
+$comment_result = $conn->query($sql_comment);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,24 +22,22 @@
 
 
 <body>
-    <?php
-    require "database.php";
-    $sqlStory = "SELECT title, body, link FROM Stories";
-
-    $result = $conn->query($sqlStory);
-
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while ($row = $result->fetch_assoc()) {
-            echo "<br> id: " . $row["title"] . " - Name: " . $row["body"] . " " . $row["link"] . "<br>";
+    <h1><?php echo $story['title']; ?></h1>
+    <p><?php echo $story['body']; ?></p>
+    <h2>Comments</h2>
+    <ul>
+        <?php
+        if ($result_comments->num_rows > 0) {
+            while ($row = $result_comments->fetch_assoc()) {
+                echo "<li>" . $row["body"] . "</li>";
+            }
+        } else {
+            echo "No comments yet.";
         }
-    } else {
-        echo "0 results";
-    }
+        $conn->close();
+        ?>
+    </ul>
 
-    $conn->close();
-
-    ?>
 </body>
 
 </html>
