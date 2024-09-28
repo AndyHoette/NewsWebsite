@@ -10,6 +10,13 @@ if(session_id() == '' || !isset($_SESSION)) {
     <title>Log In</title>
 </head>
 <body>
+<h1>
+<?php
+if(isset($_SESSION['userName'])){
+    echo $_SESSION['userName'];
+}
+?>
+</h1>
 <h1>Existing User</h1>
 <form name="LogIn" action="processLogin.php" method="post" autocomplete="off">
     <p>

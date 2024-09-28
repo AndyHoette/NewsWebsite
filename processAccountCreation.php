@@ -37,6 +37,7 @@ if($cnt == 0){
     $stmt = $mysqli->prepare("INSERT INTO Users (userName, password) VALUES (?, ?)");
     $stmt->bind_param('ss', $userNameAttempt, $passwordAttempt);
     $stmt->execute();
+    $_SESSION['userName'] = $userNameAttempt;
     header('Location: home.php');
     // Redirect to your target page
 }
