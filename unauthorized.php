@@ -1,1 +1,1 @@
-<h1>HOW DARE YOU!</h1>
+<h1>auth failed</h1>

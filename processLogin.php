@@ -1,4 +1,8 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
+echo isset($_POST['token']);
+echo $_POST['token'];
+echo $_SESSION['token'];
+exit;
 if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){
     header("Location: unauthorized.php");
 }
