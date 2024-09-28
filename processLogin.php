@@ -1,4 +1,5 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
+session_start();
 echo isset($_POST['token']);
 echo $_POST['token'];
 echo $_SESSION['token'];
