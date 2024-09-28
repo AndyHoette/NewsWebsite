@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-
+session_start();
 if(!(isset($_POST['token'])&&hash_equals($_POST['token'],$_SESSION['token']))){
     echo "post token\n";
     echo $_POST['token'];
