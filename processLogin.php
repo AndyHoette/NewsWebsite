@@ -37,7 +37,7 @@ if($cnt == 1 && password_verify($passwordAttempt, $pwd_hash)){
     // Redirect to your target page
 }
 session_destroy();
-header("Location:login.php"); //go back to log in
+header("Location:loginFail.php"); //go back to log in
 exit;
 ?>
 </body>
