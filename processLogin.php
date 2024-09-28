@@ -35,6 +35,7 @@ if($cnt == 1 && password_verify($passwordAttempt, $pwd_hash)){
     $_SESSION['username'] = $userNameAttempt;
     header('Location: storypage.php');
     // Redirect to your target page
+    exit;
 }
 session_destroy();
 header("Location:loginFail.php"); //go back to log in
