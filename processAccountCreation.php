@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-session_start();
+//session_start();
 if(!(isset($_POST['token'])&&hash_equals($_POST['token'],$_SESSION['token']))){
     header("Location: unauthorized.php");
 }
