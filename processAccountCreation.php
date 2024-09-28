@@ -36,6 +36,7 @@ if($cnt == 0){
     // Username available
     //create a new user with a userName userNameAttempt, password PasswordAttempt (hashed) and no bio
     $_SESSION['username'] = $userNameAttempt;
+    $passwordAttempt = password_hash($passwordAttempt, PASSWORD_BCRYPT);
     $stmt2 = $mysqli->prepare("INSERT INTO Users (userName, password) VALUES (?, ?)");
     $stmt2->bind_param('ss', $userNameAttempt, $passwordAttempt);
     $stmt2->execute();
