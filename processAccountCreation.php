@@ -40,9 +40,9 @@ if($cnt == 0){
     // Username available
     //create a new user with a userName userNameAttempt, password PasswordAttempt (hashed) and no bio
     $_SESSION['username'] = $userNameAttempt;
-    $stmt = $mysqli->prepare("INSERT INTO Users (userName, password) VALUES (?, ?)");
-    $stmt->bind_param('ss', $userNameAttempt, $passwordAttempt);
-    $stmt->execute();
+    $stmt2 = $mysqli->prepare("INSERT INTO Users (userName, password) VALUES (?, ?)");
+    $stmt2->bind_param('ss', $userNameAttempt, $passwordAttempt);
+    $stmt2->execute();
     $_SESSION['userName'] = $userNameAttempt;
     header('Location: home.php');
     // Redirect to your target page
