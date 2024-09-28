@@ -8,7 +8,10 @@
 <body>
 <?php
 if(!(isset($_POST['token'])&&$_POST['token']==$_SESSION['token'])){
-    header("Location: unauthorized.php");
+    echo $_POST['token'];
+    echo $_SESSION['token'];
+    exit;
+    //header("Location: unauthorized.php");
 }
 $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
 
