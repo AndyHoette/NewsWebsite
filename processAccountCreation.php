@@ -8,7 +8,7 @@
 <body>
 <?php
 
-if(!(isset($_POST['token'])&&$_POST['token']==$_SESSION['token'])){
+if(!(isset($_POST['token'])&&hash_equals($_POST['token'],$_SESSION['token']))){
     echo "post token\n";
     echo $_POST['token'];
     echo "session token\n";
