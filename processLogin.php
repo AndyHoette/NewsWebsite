@@ -1,7 +1,9 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
 session_start();
 echo isset($_POST['token']);
+echo "\n";
 echo $_POST['token'];
+echo "\n";
 echo $_SESSION['token'];
 exit;
 if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){
