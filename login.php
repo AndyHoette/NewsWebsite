@@ -12,9 +12,9 @@ if(session_id() == '' || !isset($_SESSION)) {
 <body>
 <h1>
 <?php
-if(isset($_SESSION['userName'])){
+/*if(isset($_SESSION['userName'])){
     echo $_SESSION['userName'];
-}
+}*/
 ?>
 </h1>
 <h1>Existing User</h1>

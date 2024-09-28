@@ -9,12 +9,7 @@
 <?php
 session_start();
 if(!(isset($_POST['token'])&&hash_equals($_POST['token'],$_SESSION['token']))){
-    echo "post token\n";
-    echo $_POST['token'];
-    echo "session token\n";
-    echo $_SESSION['token'];
-    exit;
-    //header("Location: unauthorized.php");
+    header("Location: unauthorized.php");
 }
 $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
 
