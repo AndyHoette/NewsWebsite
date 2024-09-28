@@ -28,6 +28,7 @@ $stmt->execute();
 // Bind the results
 $stmt->bind_result($cnt);
 $stmt->fetch();
+$stmt->close();
 
 // Compare the submitted password to the actual password hash
 
