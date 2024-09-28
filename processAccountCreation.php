@@ -7,8 +7,11 @@
 </head>
 <body>
 <?php
+
 if(!(isset($_POST['token'])&&$_POST['token']==$_SESSION['token'])){
+    echo "post token";
     echo $_POST['token'];
+    echo "session token";
     echo $_SESSION['token'];
     exit;
     //header("Location: unauthorized.php");
