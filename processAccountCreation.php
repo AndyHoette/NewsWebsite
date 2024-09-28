@@ -9,6 +9,11 @@ session_start();
 <body>
 <?php
 $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
+
+if ($mysqli->connect_errno) {
+    printf("Connection Failed: %s\n", $mysqli->connect_error);
+    exit;
+}
 $userNameAttempt = $_POST["user"];
 $passwordAttempt = $_POST["password"];
 $stmt = $mysqli->prepare("SELECT COUNT(*) FROM users WHERE username=?");
