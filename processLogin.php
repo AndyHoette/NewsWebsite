@@ -16,7 +16,7 @@ if ($mysqli->connect_errno) {
 <?php
 $userNameAttempt = $_POST["user"];
 $passwordAttempt = $_POST["password"];
-$stmt = $mysqli->prepare("SELECT COUNT(*), password FROM users WHERE username=?");
+$stmt = $mysqli->prepare("SELECT COUNT(*), password FROM Users WHERE userName=?");
 
 // Bind the parameter
 $stmt->bind_param('s', $userNameAttempt);
