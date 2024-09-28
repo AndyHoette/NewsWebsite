@@ -39,6 +39,7 @@ $stmt->fetch();
 echo $cnt;
 echo $passwordAttempt;
 echo $pwd_hash;
+echo password_verify($passwordAttempt, $pwd_hash);
 exit;
 
 if($cnt == 1 && password_verify($passwordAttempt, $pwd_hash)){
