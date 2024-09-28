@@ -36,11 +36,6 @@ $stmt->bind_result($cnt, $pwd_hash);
 $stmt->fetch();
 
 // Compare the submitted password to the actual password hash
-echo $cnt;
-echo $passwordAttempt;
-echo $pwd_hash;
-echo password_verify($passwordAttempt, $pwd_hash);
-exit;
 
 if($cnt == 1 && password_verify($passwordAttempt, $pwd_hash)){
     // Login succeeded!
