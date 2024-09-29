@@ -1,5 +1,7 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
 session_start();
+echo $_POST['token'] . $_SESSION['token'];
+exit;
 if(!isset($_POST['token'])||!hash_equals($_POST['token'],$_SESSION['token'])){
     header("Location: unauthorized.php");
 }
@@ -19,13 +21,13 @@ if ($mysqli->connect_errno) {
 <?php
     $stmt  = $mysqli->prepare("DELETE FROM Comments WHERE userWhoCreated = ?");
     $stmt->bind_param("s", $_SESSION['userName']);
-    $stmt->execute();
+    $stmt->execute(); //deletes deletedUser comments
     $stmt->close();
 
     //need to have a statement where we get all comments whose story on is linked to the user
-    //Delete from Comments
-    //Join Stories on Comments.storyCommentIsON = Stories.storyID
-    //Where Stories.userCreated = $_SESSION['userName']
+//    Delete from Comments
+//    Join Stories on Comments.storyCommentIsON = Stories.storyID
+//    Where Stories.userCreated = $_SESSION['userName']
     $stmt = $mysqli->prepare("DELETE FROM Users WHERE userCreated = ?");
     $stmt->bind_param("s", $_SESSION['userName']);
     $stmt->execute();
