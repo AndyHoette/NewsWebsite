@@ -34,7 +34,7 @@ else {
 ?>
 <form name="destroyAccount" action="destroyAccount.php" method="post" autocomplete="off">
     <p>
-        <input type="text" name="token" value="<?php echo $_SESSION['token']; ?>" /> <!--this button is just a button with a CSRF token-->
+        <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" /> <!--this button is just a button with a CSRF token-->
         <input type="submit" value="Destroy Account" />
     </p>
 </form>

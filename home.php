@@ -20,12 +20,6 @@
     } else {
         echo "<a href='login.php'>Log In</a>";
     }
-
-
-
-
-
-
     echo "<ul>";
     $stmt = $mysqli->prepare("select title, userCreated, storyID from Stories");
     $stmt->execute();
