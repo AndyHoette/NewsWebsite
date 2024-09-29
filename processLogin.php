@@ -40,7 +40,7 @@ $stmt->fetch();
 if($cnt == 1 && password_verify($passwordAttempt, $pwd_hash)){
     // Login succeeded!
     session_start();
-    $_SESSION['username'] = $userNameAttempt;
+    $_SESSION['userName'] = $userNameAttempt;
     header('Location: home.php');
     // Redirect to your target page
     exit;
