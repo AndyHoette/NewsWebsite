@@ -1,11 +1,6 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
 session_start();
-$mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
-
-if ($mysqli->connect_errno) {
-    printf("Connection Failed: %s\n", $mysqli->connect_error);
-    exit;
-}
+require "database.php";
 if(isset($_SESSION['userName'])) {
     echo "<p>Hello " . $_SESSION['userName'] . "</p>";
     $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE userName = ?");
@@ -14,7 +9,6 @@ if(isset($_SESSION['userName'])) {
     $stmt->bind_result($storyCount);
     echo "<p>You Have made " . $storyCount . " stories.</p>";
     echo "<a href='logout.php'>Log Out \n</a>";
-    echo "<a href='destroyAccount.php'>Delete Account \n</a>";
 }
 else{
     echo "<p>uh oh</p>";
