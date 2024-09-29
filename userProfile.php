@@ -9,7 +9,7 @@ if(isset($_SESSION['userName'])) { //if we have a username great it and show off
     $stmt->bind_result($storyCount);
     $stmt->fetch();
     $stmt->close();
-    echo "<p>You Have made " . $storyCount . " stories.</p>";
+    echo "<p>You Have made " . $storyCount . " stories.</p><br>";
     echo "<a href='logout.php'>Log Out \n</a>";
 }
 else{ //this else should never be accessible
