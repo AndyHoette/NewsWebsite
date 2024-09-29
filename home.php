@@ -17,6 +17,7 @@ if ($mysqli->connect_errno) {
 if(isset($_SESSION['userName'])) {
     echo "<p>Hello " . $_SESSION['userName'] . "</p>";
     echo "<a href='logout.php'>Log Out</a>";
+    echo "<a href='userProfile.php'>See Profile</a>";
 }
 else{
     echo "<a href='login.php'>Log In</a>";
