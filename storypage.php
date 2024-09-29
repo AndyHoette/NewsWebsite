@@ -29,7 +29,7 @@ $comment_result = $stmtComment->get_result();
 <body>
     <h1><?php echo $story['title']; ?></h1>
     <p><?php echo $story['body']; ?></p>
-    <p><?php echo $story['link']; ?></p>
+    <p><a href="<?php echo $story['link']; ?>"><?php echo $story['link']; ?></a></p>
     <h2>Comments</h2>
     <ul>
         <?php
