@@ -3,13 +3,18 @@ require "database.php";
 
 $story_id = $_GET['id'];
 
-$sql_Story = "SELECT title, body, link FROM Stories WHERE id=$story_id";
-$story_result = $conn->query($sql_Story);
-$story = $result_story->fetch_assoc();
+$stmtStory = $conn->prepare("SELECT title, body, link FROM Stories WHERE id = ?");
 
+// Bind Parameters
+$stmtStory->bind_param("i", $story_id);
+$stmtStory->execute();
+$story_result = $stmtStory->get_result();
+$story = $story_result->fetch_assoc();
 
-$sql_comment = "SELECT body FROM Comments WHERE storyCommentIsOn=$story_id";
-$comment_result = $conn->query($sql_comment);
+$stmtComment = $conn->prepare("SELECT body FROM Comments WHERE storyCommentIsOn = ?");
+$stmt_comment->bind_param("i", $story_id);
+$stmt_comment->execute();
+$comment_result = $stmt_comment->get_result();
 ?>
 
 <!DOCTYPE html>
