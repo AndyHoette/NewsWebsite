@@ -20,7 +20,7 @@
         echo "<p>Hello " . $_SESSION['userName'] . "</p>";
         echo "<a href='logout.php'>Log Out</a>";
         echo "<a href='userProfile.php'>See Profile</a>";
-        echo "<a href='createStory.php'>Create User Name</a>";
+        echo "<a href='createStory.php'>Create New Story</a>";
     } else {
         echo "<a href='login.php'>Log In</a>";
     }
