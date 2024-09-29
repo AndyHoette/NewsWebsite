@@ -15,6 +15,7 @@ if ($mysqli->connect_errno) {
 //have a login button/sign out button
 //should list every story
 if(isset($_SESSION['userName'])) {
+    echo "<p>Hello " . $_SESSION['userName'] . "</p>";
     echo "<a href='logout.php'>Log Out</a>";
 }
 else{
