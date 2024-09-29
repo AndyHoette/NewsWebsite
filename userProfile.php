@@ -33,4 +33,22 @@ else {
         <input type="submit" value="Destroy Account" />
     </p>
 </form>
+<?php
+$mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
+
+if ($mysqli->connect_errno) {
+printf("Connection Failed: %s\n", $mysqli->connect_error);
+exit;
+}
+echo "<ul>";
+$stmt = $mysqli->prepare("select title, userCreated, storyID from Stories where userName = ?");
+$stmt->bind_param("s", $_SESSION['userName']);
+$stmt->execute();
+$stmt->bind_result($title, $author, $storyID);
+while ($stmt->fetch()) {
+    printf("<li><a href='storypage.php?storyID=$storyID'>%s by %s</a>\n</li>", $title, $author);
+}
+echo "</ul>\n";
+?>
+?>
 

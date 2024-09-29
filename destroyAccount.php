@@ -23,6 +23,9 @@ if ($mysqli->connect_errno) {
     $stmt->close();
 
     //need to have a statement where we get all comments whose story on is linked to the user
+    //Delete from Comments
+    //Join Stories on Comments.storyCommentIsON = Stories.storyID
+    //Where Stories.userCreated = $_SESSION['userName']
     $stmt = $mysqli->prepare("DELETE FROM Stories WHERE userCreated = ?");
     $stmt->bind_param("s", $_SESSION['userName']);
     $stmt->execute();
