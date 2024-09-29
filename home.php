@@ -5,6 +5,7 @@
 </head>
 <body>
 <?php
+session_start();
 $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
 
 if ($mysqli->connect_errno) {
@@ -13,7 +14,7 @@ if ($mysqli->connect_errno) {
 }
 //have a login button/sign out button
 //should list every story
-if(session_id() == '') {
+if(isset($_SESSION['userName'])) {
     echo "<a href='login.php'>Log In</a>";
 }
 else{
