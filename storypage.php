@@ -11,11 +11,12 @@ $stmtStory->execute();
 $story_result = $stmtStory->get_result();
 $story = $story_result->fetch_assoc();
 
-$stmtComment = $mysqli->prepare("SELECT body FROM Comments WHERE storyCommentIsOn = ?");
+$stmtComment = $mysqli->prepare("SELECT body, link FROM Comments WHERE storyCommentIsOn = ?");
 $stmtComment->bind_param("i", $story_id);
 $stmtComment->execute();
 $comment_result = $stmtComment->get_result();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +35,7 @@ $comment_result = $stmtComment->get_result();
         if ($comment_result->num_rows > 0) {
             while ($row = $comment_result->fetch_assoc()) {
                 echo "<li>" . $row["body"] . "</li>";
+                echo "<li>" . $row["link"] . "</li>";
             }
         } else {
             echo "No comments yet.";
