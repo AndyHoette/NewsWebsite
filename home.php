@@ -15,10 +15,10 @@ if ($mysqli->connect_errno) {
 //have a login button/sign out button
 //should list every story
 if(isset($_SESSION['userName'])) {
-    echo "<a href='login.php'>Log In</a>";
+    echo "<a href='logout.php'>Log Out</a>";
 }
 else{
-    echo "<a href='logout.php'>Log Out</a>";
+    echo "<a href='login.php'>Log In</a>";
 }
 echo "<ul>";
 $stmt = $mysqli->prepare("select title, userCreated, storyID from Stories");
