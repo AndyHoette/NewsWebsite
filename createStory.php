@@ -8,9 +8,9 @@ if (isset($_SESSION['userName'])) {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $conn->real_escape_string($_POST['title']);
-    $body = $conn->real_escape_string($_POST['body']);
-    $link = $conn->real_escape_string($_POST['link']);
+    $title = $mysqli->real_escape_string($_POST['title']);
+    $body = $mysqli->real_escape_string($_POST['body']);
+    $link = $mysqli->real_escape_string($_POST['link']);
 
     $sql = "INSERT INTO stories (title, body, link) VALUES ('$title', '$body', '$link')";
 
