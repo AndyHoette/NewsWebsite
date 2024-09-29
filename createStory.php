@@ -2,7 +2,6 @@
 require "database.php";
 session_start();
 
-$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
 
 if (isset($_SESSION['userName'])) {
     echo "<p>Hello " . $_SESSION['userName'] . "</p>";
@@ -11,8 +10,11 @@ if (isset($_SESSION['userName'])) {
     header("Location: login.php");
 }
 
-if (!hash_equals($_SESSION['token'], $_POST['token'])) {
-    header("Location: unauthorized.php");
+$mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
+
+if ($mysqli->connect_errno) {
+    printf("Connection Failed: %s\n", $mysqli->connect_error);
+    exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
