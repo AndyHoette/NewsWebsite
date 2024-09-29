@@ -9,6 +9,7 @@ else{
     echo "<p>uh oh</p>";
     //header("Location: home.php");
 }
+echo "<a href='home.php'>Back to Home \n</a>";
 $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
 
 if ($mysqli->connect_errno) {
