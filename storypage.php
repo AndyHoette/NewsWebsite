@@ -3,7 +3,8 @@ require "database.php";
 
 $story_id = $_GET['storyID'];
 
-$stmtStory = $conn->prepare("SELECT title, body, link FROM Stories WHERE storyID = ?");
+
+$stmtStory = $mysqli->prepare("SELECT title, body, link FROM Stories WHERE storyID = ?");
 
 // Bind Parameters
 $stmtStory->bind_param("i", $story_id);
@@ -11,7 +12,7 @@ $stmtStory->execute();
 $story_result = $stmtStory->get_result();
 $story = $story_result->fetch_assoc();
 
-$stmtComment = $conn->prepare("SELECT body FROM Comments WHERE storyCommentIsOn = ?");
+$stmtComment = $mysqli->prepare("SELECT body FROM Comments WHERE storyCommentIsOn = ?");
 $stmt_comment->bind_param("i", $story_id);
 $stmt_comment->execute();
 $comment_result = $stmt_comment->get_result();
