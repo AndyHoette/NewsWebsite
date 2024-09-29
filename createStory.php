@@ -1,6 +1,9 @@
 <?php
 require "database.php";
 session_start();
+
+$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+
 if (isset($_SESSION['userName'])) {
     echo "<p>Hello " . $_SESSION['userName'] . "</p>";
     echo "<a href='logout.php'>Log Out</a>";
