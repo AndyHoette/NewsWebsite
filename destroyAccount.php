@@ -1,6 +1,6 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
 session_start();
-if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){
+if(!isset($_POST['token'])||!hash_equals($_POST['token'],$_SESSION['token'])){
     header("Location: unauthorized.php");
 }
 $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
