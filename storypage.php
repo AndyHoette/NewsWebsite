@@ -1,9 +1,9 @@
 <?php
 require "database.php";
 
-$story_id = $_GET['id'];
+$story_id = $_GET['storyID'];
 
-$stmtStory = $conn->prepare("SELECT title, body, link FROM Stories WHERE id = ?");
+$stmtStory = $conn->prepare("SELECT title, body, link FROM Stories WHERE storyID = ?");
 
 // Bind Parameters
 $stmtStory->bind_param("i", $story_id);
