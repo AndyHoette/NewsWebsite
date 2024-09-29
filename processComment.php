@@ -20,5 +20,6 @@ $stmt->bind_param("ssi", $newComment, $userNameAttempt, $storyIDAttempt);
 //adds a new entry into Comments based on the data
 $stmt->execute();
 $stmt->close();
+header("Location: storypage.php".$storyIDAttempt);
 ?>
 </body>
