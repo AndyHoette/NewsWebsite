@@ -1,20 +1,5 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
-//session_start();
-//echo isset($_POST['token']);
-//echo "\n";
-//echo $_POST['token'];
-//echo "\n";
-//echo $_SESSION['token'];
-//exit;
-//if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){
-//    header("Location: unauthorized.php");
-//}
-$mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
-
-if ($mysqli->connect_errno) {
-    printf("Connection Failed: %s\n", $mysqli->connect_error);
-    exit;
-}
+require "database.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +8,10 @@ if ($mysqli->connect_errno) {
 </head>
 <body>
 <?php
+session_start();
 $userNameAttempt = $_POST["user"];
 $passwordAttempt = $_POST["password"];
-$stmt = $mysqli->prepare("SELECT COUNT(*), password FROM Users WHERE userName=?");
+$stmt = $mysqli->prepare("SELECT COUNT(*), password FROM Users WHERE userName=?"); //sees how many users have this userName
 
 // Bind the parameter
 $stmt->bind_param('s', $userNameAttempt);
@@ -38,9 +24,10 @@ $stmt->fetch();
 // Compare the submitted password to the actual password hash
 
 if($cnt == 1 && password_verify($passwordAttempt, $pwd_hash)){
+    //we dont want this userName to appear less than 1 (then it doesn't exist)
+    //and we dont want this userName to appear more than 1 (this would be a violation and should never be possible
     // Login succeeded!
-    session_start();
-    $_SESSION['userName'] = $userNameAttempt;
+    $_SESSION['userName'] = $userNameAttempt; //we want to store the userName in a session variable
     header('Location: home.php');
     // Redirect to your target page
     exit;

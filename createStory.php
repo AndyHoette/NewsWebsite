@@ -3,19 +3,15 @@ require "database.php";
 session_start();
 
 
-if (isset($_SESSION['userName'])) {
-    echo "<p>Hello " . $_SESSION['userName'] . "</p>";
-    echo "<a href='logout.php'>Log Out</a>";
+if (isset($_SESSION['userName'])) { //if we have userName then we should be allowed to continue otherwise reject this web page
+    echo "<p>Hello " . $_SESSION['userName'] . "</p>"; //greets the user
+    echo "<a href='logout.php'>Log Out</a>"; //gives them the option to log out
+    echo "<a href='home.php'>Back to Home</a>";
 } else {
     header("Location: login.php");
 }
 
-$mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
-
-if ($mysqli->connect_errno) {
-    printf("Connection Failed: %s\n", $mysqli->connect_error);
-    exit;
-}
+require "database.php"; //establishes the user
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $mysqli->real_escape_string($_POST['title']);
@@ -35,11 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $mysqli->close();
 
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +46,7 @@ $mysqli->close();
         <input type="text" id="title" name="title" required><br><br>
 
         <label for="body">Body:</label>
-        <textarea id="body" name="body"></textarea><br><br>
+        <textarea id="body" name="body"></textarea><br><br> <!--Creates a simple form with a CSRF token-->
 
         <label for="link">Link:</label>
         <input type="url" id="link" name="link"><br><br>

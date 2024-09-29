@@ -1,7 +1,7 @@
 <?php
 require "database.php";
 
-$story_id = $_GET['storyID'];
+$story_id = $_GET['storyID']; //story ID was passed as a get request which shouldn't be a problem because anyone should be able to view this site
 
 $stmtStory = $mysqli->prepare("SELECT title, body, link FROM Stories WHERE storyID = ?");
 
@@ -29,7 +29,7 @@ $comment_result = $stmtComment->get_result();
 <body>
     <h1><?php echo $story['title']; ?></h1>
     <p><?php echo $story['body']; ?></p>
-    <p><a href="<?php echo $story['link']; ?>"><?php echo $story['link']; ?></a></p>
+    <p><a href="<?php echo $story['link']; ?>"><?php echo $story['link']; ?></a></p> <!--prints the link out as itself-->
     <h2>Comments</h2>
     <ul>
         <?php

@@ -7,19 +7,14 @@
 </head>
 <body>
 <?php
-//session_start();
-//if(!(isset($_POST['token'])&&hash_equals($_POST['token'],$_SESSION['token']))){
-//    header("Location: unauthorized.php");
-//}
-$mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
-
-if ($mysqli->connect_errno) {
-    printf("Connection Failed: %s\n", $mysqli->connect_error);
-    exit;
+session_start();
+if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){ //if the CSRF token is incorrect
+    header("Location: unauthorized.php");
 }
-$userNameAttempt = $_POST["user"];
-$passwordAttempt = $_POST["password"];
-$stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE userName=?");
+require "database.php";
+$userNameAttempt = htmlentities($_POST["user"]);
+$passwordAttempt = htmlentities($_POST["password"]);
+$stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE userName=?"); //sees how many users already have this username
 
 // Bind the parameter
 $stmt->bind_param('s', $userNameAttempt);
@@ -45,9 +40,9 @@ if($cnt == 0){
     $stmt2->execute();
     $_SESSION['userName'] = $userNameAttempt;
     header('Location: home.php');
-    // Redirect to your target page
+    // Redirect to your home page
 }
-header("Location:login.php"); //go back to log in
+header("Location:accountCreationFail.php"); //go back to log in
 exit;
 ?>
 </body>

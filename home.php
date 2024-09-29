@@ -9,21 +9,14 @@
     <?php /** @noinspection SqlNoDataSourceInspection */
     session_start();
     if(!isset($_SESSION['token'])){
-        $_SESSION['token'] = bin2hex(random_bytes(32));
+        $_SESSION['token'] = bin2hex(random_bytes(32)); //if we need a token we should generate one
     }
-    $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
-
-    if ($mysqli->connect_errno) {
-        printf("Connection Failed: %s\n", $mysqli->connect_error);
-        exit;
-    }
-    //have a login button/sign out button
-//should list every story
-    if (isset($_SESSION['userName'])) {
+    require "database.php";
+    if (isset($_SESSION['userName'])) { //if the user is logged in there should be more such as a greeting, logout, etc.
         echo "<p>Hello " . $_SESSION['userName'] . "</p>";
-        echo "<a href='logout.php'>Log Out</a>";
-        echo "<a href='userProfile.php'>See Profile</a>";
-        echo "<a href='createStory.php'>Create New Story</a>";
+        echo "<br><a href='logout.php'>Log Out</a>";
+        echo "<br><a href='userProfile.php'>See Profile</a>";
+        echo "<br><a href='createStory.php'>Create New Story</a><br>";
     } else {
         echo "<a href='login.php'>Log In</a>";
     }
@@ -37,8 +30,9 @@
     $stmt = $mysqli->prepare("select title, userCreated, storyID from Stories");
     $stmt->execute();
     $stmt->bind_result($title, $author, $storyID);
-    while ($stmt->fetch()) {
+    while ($stmt->fetch()) { //loops through the query results and prints them to the screen
         printf("<li><a href='storypage.php?storyID=$storyID'>%s by %s</a>\n</li>", $title, $author);
+        //the stories in text link to a webpage with a get request having which page is supposed to be open
     }
     echo "</ul>\n";
     ?>

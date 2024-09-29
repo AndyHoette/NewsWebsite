@@ -1,14 +1,9 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
 session_start();
-if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){
-    header("Location: unauthorized.php");
+if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){ //if the CSRF token is incorrect
+    header("Location: unauthorized.php");  //deny it
 }
-$mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
-
-if ($mysqli->connect_errno) {
-    printf("Connection Failed: %s\n", $mysqli->connect_error);
-    exit;
-}
+require "database.php"; //sets up our mysql connection
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,9 +12,9 @@ if ($mysqli->connect_errno) {
 </head>
 <body>
 <?php
-$newBio = htmlentities($_POST['newBio']);
-$userNameAttempt = htmlentities($_POST['userName']);
-$stmt = $mysqli->prepare("update Users set bio = ? where userName = ?");
+$newBio = htmlentities($_POST['newBio']); //uses FIEO principles
+$userNameAttempt = htmlentities($_POST['userName']); //same as line above
+$stmt = $mysqli->prepare("update Users set bio = ? where userName = ?"); //updates the user's bio in the appropriate spot
 $stmt->bind_param("ss", $newBio, $userNameAttempt);
 $stmt->execute();
 $stmt->close();
