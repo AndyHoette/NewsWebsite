@@ -19,7 +19,7 @@ if(isset($_SESSION['userName'])) {
     echo "<a href='logout.php'>Log Out</a>";
 }
 else{
-    echo "<a href='logout.php'>Log In</a>";
+    echo "<a href='login.php'>Log In</a>";
 }
 echo "<ul>";
 $stmt = $mysqli->prepare("select title, userCreated, storyID from Stories");
