@@ -18,6 +18,7 @@
 }*/
 ?>
 </h1>
+<a href="home.php">Back to Home</a>
 <h1>Existing User</h1>
 <form name="LogIn" action="processLogin.php" method="post" autocomplete="off">
     <p>
