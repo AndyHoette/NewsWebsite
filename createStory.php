@@ -9,7 +9,7 @@ if (isset($_SESSION['userName'])) {
 }
 
 if (!hash_equals($_SESSION['token'], $_POST['token'])) {
-    die("Request forgery detected");
+    header("Location: unauthorized.php");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
