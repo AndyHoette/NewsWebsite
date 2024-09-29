@@ -40,6 +40,7 @@ if ($mysqli->connect_errno) {
 printf("Connection Failed: %s\n", $mysqli->connect_error);
 exit;
 }
+echo "<h3>Stories you Created</h3>";
 echo "<ul>";
 $stmt = $mysqli->prepare("select title, userCreated, storyID from Stories where userCreated = ?");
 $stmt->bind_param("s", $_SESSION['userName']);
@@ -49,6 +50,5 @@ while ($stmt->fetch()) {
     printf("<li><a href='storypage.php?storyID=$storyID'>%s by %s</a>\n</li>", $title, $author);
 }
 echo "</ul>\n";
-?>
 ?>
 
