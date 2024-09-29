@@ -37,7 +37,7 @@ else {
 ?>
 <form name="destroyAccount" action="destroyAccount.php" method="post" autocomplete="off">
     <p>
-        <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
+        <input type="text" name="token" value="<?php echo $_SESSION['token']; ?>" />
         <input type="submit" value="Destroy Account" />
     </p>
 </form>
