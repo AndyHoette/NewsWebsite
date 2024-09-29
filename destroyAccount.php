@@ -26,7 +26,7 @@ if ($mysqli->connect_errno) {
     //Delete from Comments
     //Join Stories on Comments.storyCommentIsON = Stories.storyID
     //Where Stories.userCreated = $_SESSION['userName']
-    $stmt = $mysqli->prepare("DELETE FROM Stories WHERE userCreated = ?");
+    $stmt = $mysqli->prepare("DELETE FROM Users WHERE userCreated = ?");
     $stmt->bind_param("s", $_SESSION['userName']);
     $stmt->execute();
     $stmt->close();
