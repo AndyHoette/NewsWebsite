@@ -14,17 +14,19 @@ if ($mysqli->connect_errno) {
 //have a login button/sign out button
 //should list every story
 if(session_id() == '') {
-    echo "<a href='login.php'>Log In</a>>";
+    echo "<a href='login.php'>Log In</a>";
 }
 else{
-    echo "<a href='logout.php'>Log Out</a>>";
+    echo "<a href='logout.php'>Log Out</a>";
 }
-$stmt = $mysqli->prepare("select title, userCreated from Stories");
+echo "<ul>";
+$stmt = $mysqli->prepare("select title, userCreated, storyID from Stories");
 $stmt->execute();
-$stmt->bind_result($title, $author);
+$stmt->bind_result($title, $author, $storyID);
 while($stmt -> fetch()) {
-    printf("<p1>%s by %s</p1>\n", $title, $author);
+    printf("<li><a href='storypage.php?storyID=$storyID'>%s by %s</a>\n</li>", $title, $author);
 }
+echo "</ul>\n";
 ?>
 </body>
 </html>
