@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $body = $mysqli->real_escape_string($_POST['body']);
     $link = $mysqli->real_escape_string($_POST['link']);
 
-    $sql = "INSERT INTO stories (title, body, link) VALUES ('$title', '$body', '$link')";
+    $sql = "INSERT INTO Stories (title, body, link) VALUES ('$title', '$body', '$link')";
 
     if ($mysqli->query($sql) === TRUE) {
         echo "New story created successfully";
