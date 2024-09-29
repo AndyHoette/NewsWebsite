@@ -1,6 +1,9 @@
 <?php
 require "database.php";
-
+session_start();
+if(!isset($_SESSION['token'])){
+    $_SESSION['token'] = bin2hex(random_bytes(32)); //if we need a token we should generate one
+}
 $story_id = $_GET['storyID']; //story ID was passed as a get request which shouldn't be a problem because anyone should be able to view this site
 
 $stmtStory = $mysqli->prepare("SELECT title, body, link FROM Stories WHERE storyID = ?");
