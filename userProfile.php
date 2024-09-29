@@ -41,7 +41,7 @@ printf("Connection Failed: %s\n", $mysqli->connect_error);
 exit;
 }
 echo "<ul>";
-$stmt = $mysqli->prepare("select title, userCreated, storyID from Stories where userWhoCreated = ?");
+$stmt = $mysqli->prepare("select title, userWhoCreated, storyID from Stories where userWhoCreated = ?");
 $stmt->bind_param("s", $_SESSION['userName']);
 $stmt->execute();
 $stmt->bind_result($title, $author, $storyID);

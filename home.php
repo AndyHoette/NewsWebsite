@@ -34,7 +34,7 @@
 
 
     echo "<ul>";
-    $stmt = $mysqli->prepare("select title, userCreated, storyID from Stories");
+    $stmt = $mysqli->prepare("select title, userWhoCreated, storyID from Stories");
     $stmt->execute();
     $stmt->bind_result($title, $author, $storyID);
     while ($stmt->fetch()) {
