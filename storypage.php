@@ -2,7 +2,6 @@
 require "database.php";
 
 $story_id = $_GET['storyID'];
-$comment_id = $_GET['commentID'];
 
 $stmtStory = $mysqli->prepare("SELECT title, body, link FROM Stories WHERE storyID = ?");
 
@@ -12,9 +11,9 @@ $stmtStory->execute();
 $story_result = $stmtStory->get_result();
 $story = $story_result->fetch_assoc();
 
-$stmtComment = $mysqli->prepare("SELECT body FROM Comments WHERE commentID = ?");
-$stmtcomment->bind_param("i", $comment_id);
-$stmtcomment->execute();
+$stmtComment = $mysqli->prepare("SELECT body FROM Comments WHERE storyID = ?");
+$stmtComment->bind_param("i", $story_id);
+$stmtComment->execute();
 $comment_result = $stmt_comment->get_result();
 ?>
 
