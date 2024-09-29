@@ -1,8 +1,9 @@
-<?php
+<?php /** @noinspection SqlNoDataSourceInspection */
 session_start();
 if(isset($_SESSION['userName'])) {
     echo "<p>Hello " . $_SESSION['userName'] . "</p>";
-    echo "<a href='logout.php'>Log Out</a>";
+    echo "<a href='logout.php'>Log Out \n</a>";
+    echo "<a href='destroyAccount.php'>Delete Account \n</a>";
 }
 else{
     echo "<p>uh oh</p>";
@@ -18,5 +19,28 @@ $stmt = $mysqli->prepare("Select userName, bio from Users where userName = ?");
 $stmt->bind_param("s", $_SESSION['userName']);
 $stmt->execute();
 $stmt->bind_result($userName, $bio);
-echo "<h1>" . $userName . "</h1>";
+$stmt->close();
+if($bio != ''){
+    echo "<p>\n Bio: " . $bio . "\n</p>";
+}
+else{
+
+}
 ?>
+<!--<form name="CreateBio" action="createBio.php" method="post" autocomplete="off">-->
+<!--    <p>-->
+<!--        <label for="bio">Add Bio:</label>-->
+<!--        <input type="text" name="bio" id="bio" /> <!--creates a simple form with entry and a submit-->-->
+<!--        <input type="hidden" name="token" value="--><?php //echo $_SESSION['token']; ?><!--" />-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <input type="submit" value="Log In!" />-->
+<!--    </p>-->
+<!--</form>-->
+<form name="destroyAccount" action="destroyAccount.php" method="post" autocomplete="off">
+    <p>
+        <input type="hidden" name="token" value="<?php echo($_SESSION['token']); ?>" />
+        <input type="submit" value="Destroy Account" />
+    </p>
+</form>
+
