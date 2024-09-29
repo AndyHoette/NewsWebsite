@@ -38,7 +38,7 @@ $comment_result = $stmtComment->get_result();
         } else {
             echo "No comments yet.";
         }
-        $conn->close();
+        $mysqli->close();
         ?>
     </ul>
 
