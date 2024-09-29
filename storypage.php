@@ -12,7 +12,7 @@ $stmtStory->execute();
 $story_result = $stmtStory->get_result();
 $story = $story_result->fetch_assoc();
 
-$stmtComment = $mysqli->prepare("SELECT body FROM Comments WHERE storyCommentIsOn = ?");
+$stmtComment = $mysqli->prepare("SELECT body FROM Comments WHERE commentID = ?");
 $stmt_comment->bind_param("i", $comment_id);
 $stmt_comment->execute();
 $comment_result = $stmt_comment->get_result();
@@ -25,7 +25,6 @@ $comment_result = $stmt_comment->get_result();
     <meta charset="UTF-8">
     <title>Story</title>
 </head>
-
 
 <body>
     <h1><?php echo $story['title']; ?></h1>
