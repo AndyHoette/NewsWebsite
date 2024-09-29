@@ -12,8 +12,8 @@ require "database.php"; //sets up our mysql connection
 </head>
 <body>
 <?php
-$newComment = htmlentities($_POST['comment']); //uses FIEO principles
-$userNameAttempt = htmlentities($_POST['userName']); //same as line above
+$newComment = htmlentities($_POST['body']); //uses FIEO principles
+$userNameAttempt = htmlentities($_SESSION['userName']); //same as line above
 $storyIDAttempt = htmlentities($_POST['storyID']);
 $stmt = $mysqli->prepare("INSERT INTO Comments (body, userWhoCreated, storyCommentIsOn) values ($newComment, $userNameAttempt, $storyIDAttempt)");
 //adds a new entry into Comments based on the data
