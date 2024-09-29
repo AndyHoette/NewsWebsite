@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_SESSION['userName'])) {
     echo "<p>Hello " . $_SESSION['userName'] . "</p>";
     echo "<a href='logout.php'>Log Out</a>";

@@ -4,7 +4,7 @@
     <title>Home</title>
 </head>
 <body>
-<?php
+<?php /** @noinspection SqlNoDataSourceInspection */
 session_start();
 $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
 
