@@ -13,8 +13,8 @@ $story_result = $stmtStory->get_result();
 $story = $story_result->fetch_assoc();
 
 $stmtComment = $mysqli->prepare("SELECT body FROM Comments WHERE commentID = ?");
-$stmt_comment->bind_param("i", $comment_id);
-$stmt_comment->execute();
+$stmtcomment->bind_param("i", $comment_id);
+$stmtcomment->execute();
 $comment_result = $stmt_comment->get_result();
 ?>
 
