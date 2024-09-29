@@ -23,7 +23,7 @@ $stmt = $mysqli->prepare("select title, userCreated from Stories");
 $stmt->execute();
 $stmt->bind_result($title, $author);
 while($stmt -> fetch()) {
-    printf("%s by %s\n", $title, $author);
+    printf("<p1>%s by %s</p1>\n", $title, $author);
 }
 ?>
 </body>
