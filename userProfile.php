@@ -7,6 +7,8 @@ if(isset($_SESSION['userName'])) {
     $stmt->bind_param("s", $_SESSION['userName']);
     $stmt->execute();
     $stmt->bind_result($storyCount);
+    $stmt->fetch();
+    $stmt->close();
     echo "<p>You Have made " . $storyCount . " stories.</p>";
     echo "<a href='logout.php'>Log Out \n</a>";
 }
@@ -21,6 +23,7 @@ $stmt = $mysqli->prepare("Select userName, bio from Users where userName = ?");
 $stmt->bind_param("s", $_SESSION['userName']);
 $stmt->execute();
 $stmt->bind_result($userName, $bio);
+$stmt->fetch();
 $stmt->close();
 if($bio != ''){
     echo "<p>\n Bio: " . $bio . "\n</p>";
