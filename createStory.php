@@ -8,6 +8,9 @@ if (isset($_SESSION['userName'])) {
     header("Location: login.php");
 }
 
+if (!hash_equals($_SESSION['token'], $_POST['token'])) {
+    die("Request forgery detected");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $mysqli->real_escape_string($_POST['title']);
@@ -51,6 +54,8 @@ $mysqli->close();
 
         <label for="link">Link:</label>
         <input type="url" id="link" name="link"><br><br>
+
+        <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
 
         <input type="submit" value="Submit">
     </form>
