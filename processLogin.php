@@ -41,7 +41,7 @@ if($cnt == 1 && password_verify($passwordAttempt, $pwd_hash)){
     // Login succeeded!
     session_start();
     $_SESSION['username'] = $userNameAttempt;
-    header('Location: storypage.php');
+    header('Location: home.php');
     // Redirect to your target page
     exit;
 }
