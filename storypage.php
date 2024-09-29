@@ -31,8 +31,8 @@ $comment_result = $stmt_comment->get_result();
     <h2>Comments</h2>
     <ul>
         <?php
-        if ($result_comments->num_rows > 0) {
-            while ($row = $result_comments->fetch_assoc()) {
+        if ($comment_result->num_rows > 0) {
+            while ($row = $comment_result->fetch_assoc()) {
                 echo "<li>" . $row["body"] . "</li>";
             }
         } else {
