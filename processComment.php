@@ -16,7 +16,7 @@ $newComment = htmlentities($_POST['body']); //uses FIEO principles
 $userNameAttempt = htmlentities($_SESSION['userName']); //same as line above
 $storyIDAttempt = htmlentities($_POST['storyID']);
 $stmt = $mysqli->prepare("INSERT INTO Comments (body, userWhoCreated, storyCommentIsOn) values (?, ?, ?)");
-$stmt->bind_param("ssi", $newComment, $userNameAttempt, $storyID);
+$stmt->bind_param("ssi", $newComment, $userNameAttempt, $storyIDAttempt);
 //adds a new entry into Comments based on the data
 $stmt->execute();
 $stmt->close();
