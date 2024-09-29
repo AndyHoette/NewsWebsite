@@ -11,7 +11,7 @@ $stmtStory->execute();
 $story_result = $stmtStory->get_result();
 $story = $story_result->fetch_assoc();
 
-$stmtComment = $mysqli->prepare("SELECT body FROM Comments WHERE storyID = ?");
+$stmtComment = $mysqli->prepare("SELECT body FROM Comments WHERE storyCommentIsOn = ?");
 $stmtComment->bind_param("i", $story_id);
 $stmtComment->execute();
 $comment_result = $stmt_comment->get_result();
