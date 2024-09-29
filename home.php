@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+</head>
+<body>
 <?php
 $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
 
@@ -20,4 +26,6 @@ while($stmt -> fetch()) {
     printf("%s by %s\n", $title, $author);
 }
 ?>
+</body>
+</html>
 
