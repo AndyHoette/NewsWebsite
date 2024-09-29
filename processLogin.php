@@ -1,5 +1,20 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
 session_start();
+//echo isset($_POST['token']);
+//echo "\n";
+//echo $_POST['token'];
+//echo "\n";
+//echo $_SESSION['token'];
+//exit;
+if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){
+    header("Location: unauthorized.php");
+}
+$mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
+
+if ($mysqli->connect_errno) {
+    printf("Connection Failed: %s\n", $mysqli->connect_error);
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,10 +23,9 @@ session_start();
 </head>
 <body>
 <?php
-$mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
 $userNameAttempt = $_POST["user"];
 $passwordAttempt = $_POST["password"];
-$stmt = $mysqli->prepare("SELECT COUNT(*), password FROM users WHERE username=?");
+$stmt = $mysqli->prepare("SELECT COUNT(*), password FROM Users WHERE userName=?");
 
 // Bind the parameter
 $stmt->bind_param('s', $userNameAttempt);
@@ -26,11 +40,12 @@ $stmt->fetch();
 if($cnt == 1 && password_verify($passwordAttempt, $pwd_hash)){
     // Login succeeded!
     $_SESSION['username'] = $userNameAttempt;
-    header('Location: home.php');
+    header('Location: storypage.php');
     // Redirect to your target page
+    exit;
 }
 session_destroy();
-header("Location:login.php"); //go back to log in
+header("Location:loginFail.php"); //go back to log in
 exit;
 ?>
 </body>
