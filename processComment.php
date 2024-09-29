@@ -1,6 +1,6 @@
 <?php /** @noinspection SqlNoDataSourceInspection */
 session_start();
-if(!isset($_POST['token'])||$_POST['token']!=$_SESSION['token']){ //if the CSRF token is incorrect
+if(!isset($_POST['token'])||!hash_equals($_POST['token'],$_SESSION['token'])){ //makes sure this isn't a CSRF
     header("Location: unauthorized.php");  //deny it
 }
 require "database.php"; //sets up our mysql connection
