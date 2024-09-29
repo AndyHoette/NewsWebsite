@@ -4,6 +4,8 @@ session_start();
 if (isset($_SESSION['userName'])) {
     echo "<p>Hello " . $_SESSION['userName'] . "</p>";
     echo "<a href='logout.php'>Log Out</a>";
+} else {
+    header("Location: login.php");
 }
 
 
@@ -13,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $link = $mysqli->real_escape_string($_POST['link']);
 
 
-    $sql = "INSERT INTO Stories (title, body, link, userCreated) VALUES ('$title', '$body', '$link')";
+    $sql = "INSERT INTO Stories (title, body, link, userCreated) VALUES ('$title', '$body', '$link', '$_SESSION[userName]')";
 
     if ($mysqli->query($sql) === TRUE) {
         echo "New story created successfully";
