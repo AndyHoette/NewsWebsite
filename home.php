@@ -8,6 +8,9 @@
 <body>
     <?php /** @noinspection SqlNoDataSourceInspection */
     session_start();
+    if(!isset($_SESSION['token'])){
+        $_SESSION['token'] = bin2hex(random_bytes(32));
+    }
     $mysqli = new mysqli('localhost', 'viewer', 'easyPassword', 'newsWebsite');
 
     if ($mysqli->connect_errno) {

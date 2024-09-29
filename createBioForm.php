@@ -5,6 +5,6 @@
         <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
     </p>
     <p>
-        <input type="submit" value="Log In!" />
+        <input type="submit" value="Create Bio" />
     </p>
 </form>
