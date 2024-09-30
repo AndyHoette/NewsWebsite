@@ -43,8 +43,6 @@ if($cnt == 0){
     exit;
     // Redirect to your home page
 }
-echo "outer reached";
-exit;
 header("Location:accountCreationFail.php"); //go back to log in
 exit;
 ?>

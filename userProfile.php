@@ -3,13 +3,13 @@ session_start();
 require "database.php"; //establishes a connection to the database
 if(isset($_SESSION['userName'])) { //if we have a username great it and show off how many stories they have made
     echo "<p>Hello " . $_SESSION['userName'] . "</p>";
-    $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE userName = ?");
+    $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Stories WHERE userCreated = ?");
     $stmt->bind_param("s", $_SESSION['userName']);
     $stmt->execute();
     $stmt->bind_result($storyCount);
     $stmt->fetch();
     $stmt->close();
-    echo "<p>You Have made " . $storyCount . " stories.</p>";
+    echo "<p>You have written a story " . $storyCount . " time(s).</p>";
     echo "<a href='logout.php'>Log Out \n</a><br>";
 }
 else{ //this else should never be accessible
