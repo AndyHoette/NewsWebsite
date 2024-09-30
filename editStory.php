@@ -12,6 +12,7 @@ $stmt->bind_param("i", $storyID);
 $stmt->execute();
 $stmt->bind_result($title, $body, $link);
 $stmt->fetch();
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
