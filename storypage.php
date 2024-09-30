@@ -30,54 +30,54 @@ $comment_result = $stmtComment->get_result();
 </head>
 
 <body>
-<a href="home.php">Back to Home</a>
-<h1><?php echo $story['title']; ?></h1>
-<p><?php echo $story['body']; ?></p>
-<p><a href="<?php echo $story['link']; ?>"><?php echo $story['link']; ?></a></p>
-<!--prints the link out as itself-->
-<h2>Comments</h2>
-<form name="addComment" action="processComment.php" method="post" autocomplete="off">
-    <p>
-        <label for="body">Add Comment:</label>
-        <input type="text" name="body" id="body" /> <!--creates a simple form with entry and a submit-->
-        <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
-        <input type="hidden" name="storyID" value="<?php echo $story_id ?>" />
-    </p>
-    <p>
-        <input type="submit" value="Add Comment" />
-    </p>
-</form>
-<br>
-<ul>
-    <?php
-    if ($comment_result->num_rows > 0) {
-        while ($row = $comment_result->fetch_assoc()) {
-            echo "<li>" . $row["userWhoCreated"] . ": " . $row["body"] . "</li>";
-            if (isset($_SESSION['userName'])) {
-                if ($row["userWhoCreated"] == $_SESSION['userName']) {
-                    echo ' <form action="editComment.php" method="post" style="display:inline;">
+    <a href="home.php">Back to Home</a>
+    <h1><?php echo $story['title']; ?></h1>
+    <p><?php echo $story['body']; ?></p>
+    <p><a href="<?php echo $story['link']; ?>"><?php echo $story['link']; ?></a></p>
+    <!--prints the link out as itself-->
+    <h2>Comments</h2>
+    <form name="addComment" action="processComment.php" method="post" autocomplete="off">
+        <p>
+            <label for="body">Add Comment:</label>
+            <input type="text" name="body" id="body" /> <!--creates a simple form with entry and a submit-->
+            <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
+            <input type="hidden" name="storyID" value="<?php echo $story_id ?>" />
+        </p>
+        <p>
+            <input type="submit" value="Add Comment" />
+        </p>
+    </form>
+    <br>
+    <ul>
+        <?php
+        if ($comment_result->num_rows > 0) {
+            while ($row = $comment_result->fetch_assoc()) {
+                echo "<li>" . $row["userWhoCreated"] . ": " . $row["body"] . "</li>";
+                if (isset($_SESSION['userName'])) {
+                    if ($row["userWhoCreated"] == $_SESSION['userName']) {
+                        echo ' <form action="editComment.php" method="post" style="display:inline;">
                             <input type="hidden" name="commentID" value="' . $row["commentID"] . '">
                             <input type="hidden" name="token" value="' . $_SESSION['token'] . '">
                             <input type="hidden" name="storyID" value="' . $story_id . '">
                             <input type="text" name="newBody" value="' . $row["body"] . '">
                             <input type="submit" value="Edit">
                             </form>';
-                    echo ' <form action="deletecomment.php" method="post"
+                        echo ' <form action="deleteComment.php" method="post"
                             <input type="hidden" name="commentID" value="' . $row["commentID"] . '">
                             <input type="hidden" name="token" value="' . $_SESSION['token'] . '">
                             <input type="hidden" name="storyID" value="' . $story_id . '">
                             <input type="submit" value="Delete">
                             </form>';
+                    }
                 }
+                echo "</li>";
             }
-            echo "</li>";
+        } else {
+            echo "No comments yet.";
         }
-    } else {
-        echo "No comments yet.";
-    }
-    $mysqli->close();
-    ?>
-</ul>
+        $mysqli->close();
+        ?>
+    </ul>
 
 </body>
 
