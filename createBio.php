@@ -18,5 +18,7 @@ $stmt = $mysqli->prepare("update Users set bio = ? where userName = ?"); //updat
 $stmt->bind_param("ss", $newBio, $userNameAttempt);
 $stmt->execute();
 $stmt->close();
+header("Locatioin: userProfile.php")
+exit;
 ?>
 </body>
