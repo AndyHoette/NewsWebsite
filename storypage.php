@@ -1,7 +1,7 @@
 <?php
 require "database.php";
 session_start();
-if(!isset($_SESSION['token'])){
+if (!isset($_SESSION['token'])) {
     $_SESSION['token'] = bin2hex(random_bytes(32)); //if we need a token we should generate one
 }
 $story_id = $_GET['storyID']; //story ID was passed as a get request which shouldn't be a problem because anyone should be able to view this site
@@ -14,7 +14,7 @@ $stmtStory->execute();
 $story_result = $stmtStory->get_result();
 $story = $story_result->fetch_assoc();
 
-$stmtComment = $mysqli->prepare("SELECT body FROM Comments WHERE storyCommentIsOn = ?");
+$stmtComment = $mysqli->prepare("SELECT body, userWhoCreated, commentID FROM Comments WHERE storyCommentIsOn = ?");
 $stmtComment->bind_param("i", $story_id);
 $stmtComment->execute();
 $comment_result = $stmtComment->get_result();
@@ -33,7 +33,8 @@ $comment_result = $stmtComment->get_result();
     <a href="home.php">Back to Home</a>
     <h1><?php echo $story['title']; ?></h1>
     <p><?php echo $story['body']; ?></p>
-    <p><a href="<?php echo $story['link']; ?>"><?php echo $story['link']; ?></a></p> <!--prints the link out as itself-->
+    <p><a href="<?php echo $story['link']; ?>"><?php echo $story['link']; ?></a></p>
+    <!--prints the link out as itself-->
     <h2>Comments</h2>
     <form name="addComment" action="processComment.php" method="post" autocomplete="off">
         <p>
@@ -51,7 +52,17 @@ $comment_result = $stmtComment->get_result();
         <?php
         if ($comment_result->num_rows > 0) {
             while ($row = $comment_result->fetch_assoc()) {
-                echo "<li>" . $row["body"] . "</li>";
+                echo "<li>" . $row["userWhoCreated"] . ": " . $row["body"] . "</li>";
+
+                if ($row["userWhoCreated"] == $_SESSION['username']) {
+                    echo ' <form action="editComment.php" method="post" style="display:inline;">
+                            <input type="hidden" name="commentID" value="' . $row["commentID"] . '">
+                            <input type="hidden" name="token" value="' . $_SESSION['token'] . '">
+                            <input type="text" name="newBody" value="' . $row["body"] . '">
+                            <input type="submit" value="Edit">
+                          </form>';
+                }
+                echo "</li>";
             }
         } else {
             echo "No comments yet.";
