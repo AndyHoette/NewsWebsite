@@ -54,7 +54,7 @@ $comment_result = $stmtComment->get_result();
             while ($row = $comment_result->fetch_assoc()) {
                 echo "<li>" . $row["userWhoCreated"] . ": " . $row["body"] . "</li>";
 
-                if ($row["userWhoCreated"] == $_SESSION['username']) {
+                if ($row["userWhoCreated"] == $_SESSION['userName']) {
                     echo ' <form action="editComment.php" method="post" style="display:inline;">
                             <input type="hidden" name="commentID" value="' . $row["commentID"] . '">
                             <input type="hidden" name="token" value="' . $_SESSION['token'] . '">
