@@ -8,7 +8,11 @@ if(!isset($_POST['token'])||!hash_equals($_POST['token'],$_SESSION['token'])){ /
     header("Location: unauthorized.php");
 }
 require "database.php";
-$stmt = $mysqli->prepare("delete from Stories where id=?");
+$stmt = $mysqli->prepare("DELETE FROM Comments WHERE storyCommentIsOn = ?");
+$stmt->bind_param("i",$_POST['storyID']);
+$stmt->execute();
+$stmt->close();
+$stmt = $mysqli->prepare("delete from Stories where storyID=?");
 $stmt->bind_param("i",$_POST['storyID']);
 $stmt->execute();
 $stmt->close();

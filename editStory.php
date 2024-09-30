@@ -2,7 +2,6 @@
 session_start();
 echo "<a href='userProfile.php'>Back</a><br>";
 $storyID = $_POST["storyID"];
-echo "<h1>" . $storyID . "</h1><br><br><br>";
 if(!isset($_SESSION['token'])){
     $_SESSION['token'] = bin2hex(random_bytes(32)); //if we need a token we should generate one
 }
@@ -12,6 +11,7 @@ $stmt->bind_param("i", $storyID);
 $stmt->execute();
 $stmt->bind_result($title, $body, $link);
 $stmt->fetch();
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,7 @@ $stmt->fetch();
 <form name="deleteStory" action="deleteStory.php" method="post" autocomplete="off">
     <p>
         <input type="hidden" name="storyID" value="<?php echo $storyID;?>">
+        <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>">
         <input type="submit" value="Delete Story" />
     </p>
 </form>

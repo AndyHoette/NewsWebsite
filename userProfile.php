@@ -4,7 +4,6 @@ require "database.php"; //establishes a connection to the database
 if(!isset($_SESSION['token'])){
     $_SESSION['token'] = bin2hex(random_bytes(32)); //if we need a token we should generate one
 }
-$stoken = $_SESSION['token'];
 if(isset($_SESSION['userName'])) { //if we have a username great it and show off how many stories they have made
     echo "<p>Hello " . $_SESSION['userName'] . "</p>";
     $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Stories WHERE userCreated = ?");
@@ -51,7 +50,7 @@ $stmt->execute();
 $stmt->bind_result($title, $author, $storyID);
 while ($stmt->fetch()) {
     printf("<li><a href='storypage.php?storyID=$storyID'>%s by %s</a>\n</li>", $title, $author);
-    echo "<form action='editStory.php' method='post' ><input type='submit' value='Edit/Delete Story'/><input type='hidden' name='storyID' value='<?php echo $storyID;?>'></form>";
+    echo "<form action='editStory.php' method='post' ><input type='hidden' name='storyID' value=$storyID><input type='submit' value='Edit/Delete Story'/></form>";
 }
 echo "</ul>\n";
 ?>
