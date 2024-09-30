@@ -62,7 +62,7 @@ $comment_result = $stmtComment->get_result();
                             <input type="text" name="newBody" value="' . $row["body"] . '">
                             <input type="submit" value="Edit">
                             </form>';
-                    echo ' <form action="deleteComment.php" method="post"
+                    echo ' <form action="deletecomment.php" method="post"
                             <input type="hidden" name="commentID" value="' . $row["commentID"] . '">
                             <input type="hidden" name="token" value="' . $_SESSION['token'] . '">
                             <input type="hidden" name="storyID" value="' . $story_id . '">
