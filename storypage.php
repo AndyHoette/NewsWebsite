@@ -58,6 +58,7 @@ $comment_result = $stmtComment->get_result();
                     echo ' <form action="editComment.php" method="post" style="display:inline;">
                             <input type="hidden" name="commentID" value="' . $row["commentID"] . '">
                             <input type="hidden" name="token" value="' . $_SESSION['token'] . '">
+                            <input type="hidden" name="storyID" value="' . $story_id . '">
                             <input type="text" name="newBody" value="' . $row["body"] . '">
                             <input type="submit" value="Edit">
                           </form>';
