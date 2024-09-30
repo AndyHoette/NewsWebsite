@@ -2,6 +2,7 @@
 session_start();
 echo "<a href='userProfile.php'>Back</a><br>";
 $storyID = $_POST["storyID"];
+echo $storyID;
 if(!isset($_SESSION['token'])){
     $_SESSION['token'] = bin2hex(random_bytes(32)); //if we need a token we should generate one
 }
@@ -20,7 +21,7 @@ $stmt->fetch();
 <body>
 <form name="deleteStory" action="deleteStory.php" method="post" autocomplete="off">
     <p>
-        <input type="hidden" name="storyID" value=<?php echo $storyID;?>>
+        <input type="hidden" name="storyID" value="<?php echo $storyID;?>">
         <input type="submit" value="Delete Story" />
     </p>
 </form>
