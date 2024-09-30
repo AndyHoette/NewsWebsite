@@ -8,6 +8,7 @@ if(!isset($_SESSION['token'])){
 require "database.php";
 $stmt = $mysqli->prepare("SELECT title, body, link FROM Stories WHERE StoryID = ?");
 $stmt->bind_param("i", $storyID);
+$stmt->execute();
 $stmt->bind_result($title, $body, $link);
 $stmt->fetch();
 ?>
