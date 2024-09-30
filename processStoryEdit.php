@@ -7,7 +7,7 @@ require "database.php";
 $newTitle = $_POST['title'];
 $newStory = $_POST['story'];
 $newLink = $_POST['link'];
-$stmt = $mysqli->prepare("update Stories set title=?, story=?, link=? where id=?");
+$stmt = $mysqli->prepare("update Stories set title=?, body=?, link=? where storyID=?");
 $stmt->bind_param("sssi", $newTitle, $newStory, $newLink, $_POST['storyID']);
 $stmt->execute();
 $stmt->close();
