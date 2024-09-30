@@ -24,13 +24,13 @@ $stmt->bind_result($title, $body, $link);
 </form>
 <form name="editStory" action="processStoryEdit.php" method="post" autocomplete="off">
     <p>
-        <input type="hidden" name="storyID" value=<?php echo $storyID;?>>
+        <input type="hidden" name="storyID" value="<?php echo $storyID;?>">
         <label for="title">Title:</label>
-        <input type="text" name="title" id="title" value=<?php echo $title;?> /> <!--creates a simple form with entry and a submit-->
+        <input type="text" name="title" id="title" value="<?php echo $title;?>" /> <!--creates a simple form with entry and a submit-->
         <label for="story">Story:</label>
-        <input type="text" name="story" id="story" value=<?php echo $body;?> /> <!--creates a simple form with entry and a submit-->
+        <input type="text" name="story" id="story" value="<?php echo $body;?>" /> <!--creates a simple form with entry and a submit-->
         <label for="link">Link:</label>
-        <input type="text" name="link" id="link" value=<?php echo $link;?> /> <!--creates a simple form with entry and a submit-->
+        <input type="text" name="link" id="link" value="<?php echo $link;?>" /> <!--creates a simple form with entry and a submit-->
         <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
     </p>
     <p>
