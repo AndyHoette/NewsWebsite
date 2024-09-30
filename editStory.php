@@ -23,6 +23,7 @@ $stmt->close();
 <form name="deleteStory" action="deleteStory.php" method="post" autocomplete="off">
     <p>
         <input type="hidden" name="storyID" value="<?php echo $storyID;?>">
+        <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>">
         <input type="submit" value="Delete Story" />
     </p>
 </form>
