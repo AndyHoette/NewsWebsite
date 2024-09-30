@@ -1,11 +1,11 @@
 <?php
 session_start();
-$storyID = $_GET["storyID"];
+$storyID = $_POST["storyID"];
 if(!isset($_SESSION['token'])){
     $_SESSION['token'] = bin2hex(random_bytes(32)); //if we need a token we should generate one
 }
 require "database.php";
-$stmt = $mysqli->prepare("SELECT title, body, link FROM Story WHERE StoryID = ?");
+$stmt = $mysqli->prepare("SELECT title, body, link FROM Stories WHERE StoryID = ?");
 $stmt->bind_param("i", $storyID);
 $stmt->bind_result($title, $body, $link);
 ?>
