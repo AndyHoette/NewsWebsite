@@ -54,20 +54,20 @@ $comment_result = $stmtComment->get_result();
             while ($row = $comment_result->fetch_assoc()) {
                 echo "<li>" . $row["userWhoCreated"] . ": " . $row["body"] . "</li>";
                 if (isset($_SESSION['userName'])) {
-                    if ($row["userWhoCreated"] == $_SESSION['userName']) {
+                    if ($row["userWhoCreated"] == $_SESSION['userName']) { //the owner of the comment is the only one to be able to edit comments
                         echo ' <form action="editComment.php" method="post" style="display:inline;">
                             <input type="hidden" name="commentID" value="' . $row["commentID"] . '">
                             <input type="hidden" name="token" value="' . $_SESSION['token'] . '">
                             <input type="hidden" name="storyID" value="' . $story_id . '">
                             <input type="text" name="newBody" value="' . $row["body"] . '">
                             <input type="submit" value="Edit">
-                            </form>';
+                            </form>'; //creates a text box with the current value of the body with an edit button
                         echo ' <form action="deletecomment.php" method="post">
                             <input type="hidden" name="commentID" value="' . $row["commentID"] . '">
                             <input type="hidden" name="token" value="' . $_SESSION['token'] . '">
                             <input type="hidden" name="storyID" value="' . $story_id . '">
                             <input type="submit" value="Delete">
-                            </form>';
+                            </form>'; //creates a delete button with only hidden fields
                     }
                 }
                 echo "</li>";

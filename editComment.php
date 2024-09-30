@@ -26,7 +26,8 @@ if ($userWhoCreated == $userNameAttempt) {
     $stmt->execute();
     $stmt->close();
 } else {
-    die("You are not authorized to edit this comment.");
+    header("Location: unauthorized.php");
+    exit;
 }
 
 header("Location: storypage.php?storyID=" . htmlentities($_POST['storyID']));

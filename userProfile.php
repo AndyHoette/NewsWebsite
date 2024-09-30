@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Story</title>
+</head>
+
+<body>
 <?php /** @noinspection SqlNoDataSourceInspection */
 session_start();
 require "database.php"; //establishes a connection to the database
@@ -54,4 +63,6 @@ while ($stmt->fetch()) {
 }
 echo "</ul>\n";
 ?>
+</body>
+</html>
 

@@ -7,25 +7,26 @@ if (!isset($_POST['token']) || !hash_equals($_POST['token'], $_SESSION['token'])
 
 require "database.php";
 
-$userNameAttempt = htmlentities($_SESSION['userName']); // same as line above
+$userNameAttempt = htmlentities($_SESSION['userName']); //gets the entries
 $commentIDAttempt = htmlentities($_POST['commentID']);
 
 // Fetch comment/check username
 $stmt = $mysqli->prepare("SELECT userWhoCreated FROM Comments WHERE commentID = ?");
 $stmt->bind_param("i", $commentIDAttempt);
 $stmt->execute();
-$stmt->bind_result($userWhoCreated);
+$stmt->bind_result($userWhoCreated); //find who created the comment
 $stmt->fetch();
 $stmt->close();
 
 if ($userWhoCreated == $userNameAttempt) {
-    // Delete the comment
+    // Delete the comment if authorized
     $stmt = $mysqli->prepare("DELETE FROM Comments WHERE commentID = ?");
     $stmt->bind_param("i", $commentIDAttempt);
     $stmt->execute();
     $stmt->close();
 } else {
-    die("You are not authorized to edit this comment.");
+    header("Location: unauthorized.php");
+    exit;
 }
 
 header("Location: storypage.php?storyID=" . htmlentities($_POST['storyID']));
