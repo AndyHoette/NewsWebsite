@@ -9,6 +9,7 @@ require "database.php";
 $stmt = $mysqli->prepare("SELECT title, body, link FROM Stories WHERE StoryID = ?");
 $stmt->bind_param("i", $storyID);
 $stmt->bind_result($title, $body, $link);
+$stmt->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="en">
