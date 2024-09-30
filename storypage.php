@@ -53,15 +53,16 @@ $comment_result = $stmtComment->get_result();
         if ($comment_result->num_rows > 0) {
             while ($row = $comment_result->fetch_assoc()) {
                 echo "<li>" . $row["userWhoCreated"] . ": " . $row["body"] . "</li>";
-
-                if ($row["userWhoCreated"] == $_SESSION['userName']) {
-                    echo ' <form action="editComment.php" method="post" style="display:inline;">
+                if(isset($_SESSION['userName'])) {
+                    if ($row["userWhoCreated"] == $_SESSION['userName']) {
+                        echo ' <form action="editComment.php" method="post" style="display:inline;">
                             <input type="hidden" name="commentID" value="' . $row["commentID"] . '">
                             <input type="hidden" name="token" value="' . $_SESSION['token'] . '">
                             <input type="hidden" name="storyID" value="' . $story_id . '">
                             <input type="text" name="newBody" value="' . $row["body"] . '">
                             <input type="submit" value="Edit">
                           </form>';
+                    }
                 }
                 echo "</li>";
             }
