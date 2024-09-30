@@ -50,7 +50,7 @@ $stmt->execute();
 $stmt->bind_result($title, $author, $storyID);
 while ($stmt->fetch()) {
     printf("<li><a href='storypage.php?storyID=$storyID'>%s by %s</a>\n</li>", $title, $author);
-    echo "<form action='editStory.php' method='post' ><input type='hidden' name='storyID' value='echo $storyID;'><input type='submit' value='Edit/Delete Story'/></form>";
+    echo "<form action='editStory.php' method='post' ><input type='hidden' name='storyID' value='$storyID;'><input type='submit' value='Edit/Delete Story'/></form>";
 }
 echo "</ul>\n";
 ?>
