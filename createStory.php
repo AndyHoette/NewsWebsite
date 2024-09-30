@@ -6,7 +6,7 @@ session_start();
 if (isset($_SESSION['userName'])) { //if we have userName then we should be allowed to continue otherwise reject this web page
     echo "<p>Hello " . $_SESSION['userName'] . "</p>"; //greets the user
     echo "<a href='logout.php'>Log Out</a><br>"; //gives them the option to log out
-    echo "<a href='home.php'>Back to Home</a>";
+    echo "<a href='home.php'>Back to Home</a><br>";
 } else {
     header("Location: login.php");
 }
