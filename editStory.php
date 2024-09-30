@@ -1,5 +1,6 @@
 <?php
 session_start();
+echo "<a href='userProfile.php'>Back</a><br>";
 $storyID = $_POST["storyID"];
 if(!isset($_SESSION['token'])){
     $_SESSION['token'] = bin2hex(random_bytes(32)); //if we need a token we should generate one
