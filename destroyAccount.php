@@ -24,7 +24,7 @@ require "database.php";
     //next we would want to delete all the stories the user made but first we need to delete all the comments
     //on the aforementioned stories
     //need to have a statement where we get all comments whose story on is linked to the user
-    $stmt = $mysqli->prepare("DELETE FROM Comments
+    $stmt = $mysqli->prepare("DELETE Comments FROM
     JOIN Stories ON Comments.storyCommentIsON = Stories.storyID
     WHERE Stories.userCreated = ?");
     $stmt->bind_param("s", $_SESSION['userName']);
