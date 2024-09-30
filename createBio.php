@@ -12,8 +12,8 @@ require "database.php"; //sets up our mysql connection
 </head>
 <body>
 <?php
-$newBio = htmlentities($_POST['newBio']); //uses FIEO principles
-$userNameAttempt = htmlentities($_POST['userName']); //same as line above
+$newBio = htmlentities($_POST['bio']); //uses FIEO principles
+$userNameAttempt = htmlentities($_SESSION['userName']); //same as line above
 $stmt = $mysqli->prepare("update Users set bio = ? where userName = ?"); //updates the user's bio in the appropriate spot
 $stmt->bind_param("ss", $newBio, $userNameAttempt);
 $stmt->execute();
