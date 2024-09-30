@@ -40,8 +40,11 @@ if($cnt == 0){
     $stmt2->execute();
     $_SESSION['userName'] = $userNameAttempt;
     header('Location: home.php');
+    exit;
     // Redirect to your home page
 }
+echo "outer reached";
+exit;
 header("Location:accountCreationFail.php"); //go back to log in
 exit;
 ?>
