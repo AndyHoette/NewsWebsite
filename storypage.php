@@ -36,17 +36,11 @@ $comment_result = $stmtComment->get_result();
     <p><a href="<?php echo $story['link']; ?>"><?php echo $story['link']; ?></a></p>
     <!--prints the link out as itself-->
     <h2>Comments</h2>
-    <form name="addComment" action="processComment.php" method="post" autocomplete="off">
-        <p>
-            <label for="body">Add Comment:</label>
-            <input type="text" name="body" id="body" /> <!--creates a simple form with entry and a submit-->
-            <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
-            <input type="hidden" name="storyID" value="<?php echo $story_id ?>" />
-        </p>
-        <p>
-            <input type="submit" value="Add Comment" />
-        </p>
-    </form>
+    <?php
+    if(isset($_SESSION['userName'])){ //only allows the user to comment if they are logged in
+        require "addCommentForm.php";
+    }
+    ?>
     <br>
     <ul>
         <?php
